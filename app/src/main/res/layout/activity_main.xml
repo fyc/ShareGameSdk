@@ -7,10 +7,16 @@
     android:orientation="vertical" >
 
     <Button
-        android:id="@+id/gameLoginBtn"
+        android:id="@+id/gameInitBtn"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:text="初始化" />
+    <Button
+        android:id="@+id/gameLoginBtn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="登录" />
 
 

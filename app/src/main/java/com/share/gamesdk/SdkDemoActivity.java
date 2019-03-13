@@ -1,24 +1,23 @@
 package com.share.gamesdk;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.sdklibrary.call.GameSdkLogic;
-import com.example.sdklibrary.callback.SdkCallbackListener;
-import com.example.sdklibrary.config.ConfigInfo;
-import com.example.sdklibrary.config.ConstData;
-import com.example.sdklibrary.config.SDKStatusCode;
-import com.example.sdklibrary.mvp.model.MVPPayBean;
-import com.example.sdklibrary.mvp.model.MVPPlayerBean;
-import com.example.sdklibrary.tools.LoggerUtils;
+import com.jiyou.sdklibrary.call.GameSdkLogic;
+import com.jiyou.sdklibrary.callback.SdkCallbackListener;
+import com.jiyou.sdklibrary.config.ConfigInfo;
+import com.jiyou.sdklibrary.config.ConstData;
+import com.jiyou.sdklibrary.config.SDKStatusCode;
+import com.jiyou.sdklibrary.mvp.model.MVPPayBean;
+import com.jiyou.sdklibrary.mvp.model.MVPPlayerBean;
+import com.jiyou.sdklibrary.tools.LoggerUtils;
 
 public class SdkDemoActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button loginButton, payButton, myBlogButton, subInfoButton, aboutDesButton;
+    private Button initButton,loginButton, payButton, myBlogButton, subInfoButton, aboutDesButton;
     private Button testLogin;
 
     @Override
@@ -129,6 +128,7 @@ public class SdkDemoActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void findView() {
+        initButton = findViewById(R.id.gameInitBtn);
         loginButton = findViewById(R.id.gameLoginBtn);
         payButton = findViewById(R.id.gamePayBtn);
         myBlogButton = findViewById(R.id.subInfo);
@@ -136,6 +136,7 @@ public class SdkDemoActivity extends AppCompatActivity implements View.OnClickLi
         aboutDesButton = findViewById(R.id.aboutDes);
         testLogin = findViewById(R.id.testLogin);
 
+        initButton.setOnClickListener(this);
         loginButton.setOnClickListener(this);
         payButton.setOnClickListener(this);
         myBlogButton.setOnClickListener(this);
@@ -148,6 +149,9 @@ public class SdkDemoActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.gameInitBtn:
+                init();
+                break;
             case R.id.gameLoginBtn:
                 loginMethod();
                 break;

@@ -1,4 +1,4 @@
-package com.example.sdklibrary;
+package com.jiyou.sdklibrary;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
