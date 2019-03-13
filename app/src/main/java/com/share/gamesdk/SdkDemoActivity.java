@@ -1,6 +1,5 @@
 package com.share.gamesdk;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,15 +15,11 @@ import com.example.sdklibrary.config.SDKStatusCode;
 import com.example.sdklibrary.mvp.model.MVPPayBean;
 import com.example.sdklibrary.mvp.model.MVPPlayerBean;
 import com.example.sdklibrary.tools.LoggerUtils;
-import com.share.gamesdk.other.X5InfoActivity;
 
 public class SdkDemoActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button loginButton, payButton, myBlogButton, subInfoButton, aboutDesButton;
     private Button testLogin;
-    public final String bolgUrl = "https://www.jianshu.com/u/0111a7da544b";
-    public final String desUrl = "https://www.jianshu.com/p/8b9d82560a67";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -163,23 +158,12 @@ public class SdkDemoActivity extends AppCompatActivity implements View.OnClickLi
                 subGameInfoMethod();
                 break;
             case R.id.myBlog:
-
-                jumpActivity(X5InfoActivity.class,bolgUrl);
                 break;
             case R.id.aboutDes:
-                jumpActivity(X5InfoActivity.class,desUrl);
                 break;
             case R.id.testLogin:
                 break;
         }
-    }
-
-
-
-    protected void jumpActivity(Class<?> mClass,String data){
-        Intent intent = new Intent(this, mClass);
-        intent.putExtra("key",data);
-        startActivity(intent);
     }
 
 }

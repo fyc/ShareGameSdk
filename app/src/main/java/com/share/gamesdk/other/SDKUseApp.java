@@ -12,11 +12,6 @@ public class SDKUseApp extends GameSdkApplication{
     @Override
     public void onCreate() {
         super.onCreate();
-        preInitX5();
     }
 
-    void preInitX5(){
-        Intent intent = new Intent(SDKUseApp.this,X5NetService.class);
-        startService(intent);
-    }
 }

@@ -67,13 +67,6 @@
             android:theme="@android:style/Theme.Dialog"
             />
 
-        <activity
-            android:name=".other.X5InfoActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:theme="@android:style/Theme.Dialog"
-            />
-        <service android:name=".other.X5NetService"/>
-
     </application>
 
 </manifest>
