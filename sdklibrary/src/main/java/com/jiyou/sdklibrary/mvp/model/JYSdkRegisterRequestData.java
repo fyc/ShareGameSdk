@@ -5,27 +5,24 @@ package com.jiyou.sdklibrary.mvp.model;
  * 注册
  */
 
-public class MVPRegisterBean {
+public class JYSdkRegisterRequestData {
 
     private String userName;
     private String passWord;
-    private String sepassWord;
 
-    public MVPRegisterBean() {
+    public JYSdkRegisterRequestData() {
         super();
         // TODO Auto-generated constructor stub
     }
-    public MVPRegisterBean(String userName, String passWord, String sepassWord) {
+    public JYSdkRegisterRequestData(String userName, String passWord) {
         this.userName = userName;
         this.passWord = passWord;
-        this.sepassWord = sepassWord;
     }
     @Override
     public String toString() {
-        return "MVPRegisterBean{" +
+        return "JYSdkRegisterRequestData{" +
                 "userName='" + userName + '\'' +
                 ", passWord='" + passWord + '\'' +
-                ", sepassWord='" + sepassWord + '\'' +
                 '}';
     }
 
@@ -45,11 +42,4 @@ public class MVPRegisterBean {
         this.passWord = passWord;
     }
 
-    public String getSepassWord() {
-        return sepassWord;
-    }
-
-    public void setSepassWord(String sepassWord) {
-        this.sepassWord = sepassWord;
-    }
 }

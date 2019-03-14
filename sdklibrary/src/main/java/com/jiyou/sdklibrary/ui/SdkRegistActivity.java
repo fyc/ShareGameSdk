@@ -12,7 +12,7 @@ import com.jiyou.sdklibrary.base.SdkBaseActivity;
 import com.jiyou.sdklibrary.call.Delegate;
 import com.jiyou.sdklibrary.config.SDKStatusCode;
 import com.jiyou.sdklibrary.mvp.Imp.RegistPresenterImp;
-import com.jiyou.sdklibrary.mvp.model.MVPRegisterBean;
+import com.jiyou.sdklibrary.mvp.model.JYSdkRegisterRequestData;
 import com.jiyou.sdklibrary.mvp.view.MVPRegistView;
 import com.jiyou.sdklibrary.tools.LoggerUtils;
 
@@ -28,8 +28,8 @@ public class SdkRegistActivity extends SdkBaseActivity implements MVPRegistView{
     private ImageView goback;
 
     private RegistPresenterImp registPresenterImp;
-    private String mUserName,mPassWord,mSecPassWord;
-    protected boolean accountTag,passwordTag,secpasswordTag;
+    private String mUserName,mPassWord;
+    protected boolean accountTag,passwordTag;
 
     private final int ACCOUNT_MAX_LENGTH = 20;
     private final int ACCOUNT_MIN_LENGTH = 4;
@@ -49,10 +49,8 @@ public class SdkRegistActivity extends SdkBaseActivity implements MVPRegistView{
     public void initViews() {
         username =  $(R.id.registusername);
         passWord =  $(R.id.registerpassword);
-        secpassWord =  $(R.id.secondpwd);
         register = $(R.id.regist);
         goback = $(R.id.goback);
-
     }
 
     @Override
@@ -86,13 +84,11 @@ public class SdkRegistActivity extends SdkBaseActivity implements MVPRegistView{
 
         mUserName = username.getText().toString().trim();
         mPassWord = passWord.getText().toString().trim();
-        mSecPassWord = secpassWord.getText().toString().trim();
 
         accountTag = (mUserName.length() > ACCOUNT_MIN_LENGTH) && (mUserName.length() < ACCOUNT_MAX_LENGTH);
         passwordTag = (mPassWord.length() > PASSWORD_MIN_LENGTH) && (mPassWord.length() < PASSWORD_MAX_LENGTH);
-        secpasswordTag = (mSecPassWord.length() > PASSWORD_MIN_LENGTH) && (mSecPassWord.length() < PASSWORD_MAX_LENGTH);
 
-        if ((TextUtils.isEmpty(mUserName)) && (TextUtils.isEmpty(mPassWord))  &&(TextUtils.isEmpty(mSecPassWord) ) ) {
+        if ((TextUtils.isEmpty(mUserName)) && (TextUtils.isEmpty(mPassWord)) ) {
             showToast(LENGTH_EMPTY);
             return;
         } else if ( ! mPassWord.equals(mPassWord) ){
@@ -100,8 +96,8 @@ public class SdkRegistActivity extends SdkBaseActivity implements MVPRegistView{
             return;
         }
         else {
-            if (accountTag && passwordTag && secpasswordTag) {
-                MVPRegisterBean bean = new MVPRegisterBean(mUserName, mPassWord,mSecPassWord);
+            if (accountTag && passwordTag) {
+                JYSdkRegisterRequestData bean = new JYSdkRegisterRequestData(mUserName, mPassWord);
                 registPresenterImp.regist(bean, SdkRegistActivity.this);
             } else {
                 showToast(LOGIN_FORMERROR);

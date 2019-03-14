@@ -44,7 +44,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginLeft="6dp"
         android:layout_marginRight="6dp"
-        android:layout_height="148dp">
+        android:layout_height="100dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -107,41 +107,6 @@
                 android:layout_marginLeft="5dp"
                 />
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:layout_height="46dp"
-            android:layout_marginTop="4dp"
-            android:background="@drawable/shape_login">
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:scaleX="0.7"
-                android:paddingRight="3dp"
-                android:layout_marginTop="3dp"
-                android:background="@drawable/gamesdk_pwd"
-                android:layout_height="32dp" />
-
-            <EditText
-                android:id="@+id/secondpwd"
-                android:layout_width="0dp"
-                android:layout_weight="6"
-                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_"
-                android:layout_height="match_parent"
-                android:hint="请再次输入密码:"
-                android:password="true"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:background="@null"
-                android:maxLength="15"
-                android:layout_marginLeft="5dp"
-                />
-        </LinearLayout>
-
-
-
-
 
 
     </LinearLayout>

@@ -25,22 +25,11 @@ public final class HttpUrlConstants {
     //  后台服务器错误(!--服务器宕机--!)
     public static final String SERVER_ERROR = "啊哦~服务器去月球了";
 
-    //登录url  POST
-    //username，password
-//    public static String getLoginUrl() {
-//        return "http://www.wanandroid.com/user/login";
-//    }
-
-    //注册url  POST
-    //username,password,repassword
-    public static String getRegisterUrl() {
-        return "http://www.wanandroid.com/user/register";
-    }
-
     private static String SDK_BASE_HOST1 = "https://sdk.7yol.cn";
     private static String SDK_BASE_HOST = SDK_BASE_HOST1;
 
     public static String URL_SDK_INIT = SDK_BASE_HOST + "/?method=user.init"; //初始化接口
     public static String URL_SDK_LOGIN = SDK_BASE_HOST + "/?method=user.login";//帐号登录
+    public static String URL_SDK_REG = SDK_BASE_HOST + "/?method=user.userReg";//帐号注册
 
 }

@@ -4,7 +4,7 @@ package com.jiyou.sdklibrary.mvp.presenter;
 import android.content.Context;
 
 import com.jiyou.sdklibrary.base.BasePresenter;
-import com.jiyou.sdklibrary.mvp.model.MVPRegisterBean;
+import com.jiyou.sdklibrary.mvp.model.JYSdkRegisterRequestData;
 import com.jiyou.sdklibrary.mvp.view.MVPRegistView;
 
 /**
@@ -13,5 +13,5 @@ import com.jiyou.sdklibrary.mvp.view.MVPRegistView;
  */
 
 public interface RegistPresenter extends BasePresenter<MVPRegistView> {
-    void regist(MVPRegisterBean user, Context context) ;
+    void regist(JYSdkRegisterRequestData user, Context context) ;
 }
