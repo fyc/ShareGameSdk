@@ -1,7 +1,5 @@
 package com.jiyou.sdklibrary.tools;
 
-import android.os.Build;
-
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -29,10 +27,10 @@ public class ParamHelper {
     /*公共参数*/
     public static SortedMap<String, String> mapParam() {
         SortedMap<String, String> paramObj = new TreeMap<String, String>();
-        paramObj.put("game_id", PlatformConfig.getInstance().getData("JY_GAMEID", ""));
-        paramObj.put("game_pkg", PlatformConfig.getInstance().getData("JY_GAME_PKG", ""));
-        paramObj.put("partner_id", PlatformConfig.getInstance().getData("JY_PARTNERID", ""));
-        paramObj.put("ad_code", PlatformConfig.getInstance().getData("JY_CHANNEL_ID", "0"));
+        paramObj.put("game_id", PlatformConfig.getInstance().getData("JY_GAMEID", "1"));//来自配置文件
+        paramObj.put("game_pkg", PlatformConfig.getInstance().getData("JY_GAME_PKG", "csyx_csaz_B"));//来自配置文件
+        paramObj.put("partner_id", PlatformConfig.getInstance().getData("JY_PARTNERID", "1"));
+        paramObj.put("ad_code", PlatformConfig.getInstance().getData("JY_CHANNEL_ID", "0"));//来自配置文件
         paramObj.put("build_ver", String.valueOf(android.os.Build.VERSION.SDK_INT));
         paramObj.put("uuid", DeviceUtil.getImei());
         paramObj.put("idfv", "");

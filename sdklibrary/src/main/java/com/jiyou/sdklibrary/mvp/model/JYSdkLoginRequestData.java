@@ -5,17 +5,17 @@ package com.jiyou.sdklibrary.mvp.model;
  * 登录
  */
 
-public class MVPLoginBean {
+public class JYSdkLoginRequestData {
 
     private String userName;
     private String passWord;
 
-    public MVPLoginBean() {
+    public JYSdkLoginRequestData() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-    public MVPLoginBean(String userName, String passWord) {
+    public JYSdkLoginRequestData(String userName, String passWord) {
         super();
         this.userName = userName;
         this.passWord = passWord;
@@ -39,7 +39,7 @@ public class MVPLoginBean {
 
     @Override
     public String toString() {
-        return "MVPLoginBean [userName=" + userName + ", passWord=" + passWord
+        return "JYSdkLoginRequestData [userName=" + userName + ", passWord=" + passWord
                 + "]";
     }
 }

@@ -10,7 +10,7 @@ import com.jiyou.sdklibrary.base.SdkBaseActivity;
 import com.jiyou.sdklibrary.call.Delegate;
 import com.jiyou.sdklibrary.config.SDKStatusCode;
 import com.jiyou.sdklibrary.mvp.Imp.LoginPresenterImp;
-import com.jiyou.sdklibrary.mvp.model.MVPLoginBean;
+import com.jiyou.sdklibrary.mvp.model.JYSdkLoginRequestData;
 import com.jiyou.sdklibrary.mvp.view.MVPLoginView;
 import com.jiyou.sdklibrary.tools.LoggerUtils;
 
@@ -101,7 +101,7 @@ public class SdkLoginActivity extends SdkBaseActivity implements MVPLoginView{
             return;
         } else {
             if (accountTag && passwordTag) {
-                MVPLoginBean bean = new MVPLoginBean(mUserName, mPassWord);
+                JYSdkLoginRequestData bean = new JYSdkLoginRequestData(mUserName, mPassWord);
                 loginPresenterImp.login(bean, SdkLoginActivity.this);
             } else {
                 showToast(LOGIN_FORMERROR);

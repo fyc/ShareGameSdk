@@ -27,9 +27,9 @@ public final class HttpUrlConstants {
 
     //登录url  POST
     //username，password
-    public static String getLoginUrl() {
-        return "http://www.wanandroid.com/user/login";
-    }
+//    public static String getLoginUrl() {
+//        return "http://www.wanandroid.com/user/login";
+//    }
 
     //注册url  POST
     //username,password,repassword
@@ -37,8 +37,10 @@ public final class HttpUrlConstants {
         return "http://www.wanandroid.com/user/register";
     }
 
-    public static String SDK_BASE_HOST1 = "https://sdk.7yol.cn";
-    public static String SDK_BASE_HOST = SDK_BASE_HOST1;
+    private static String SDK_BASE_HOST1 = "https://sdk.7yol.cn";
+    private static String SDK_BASE_HOST = SDK_BASE_HOST1;
+
     public static String URL_SDK_INIT = SDK_BASE_HOST + "/?method=user.init"; //初始化接口
+    public static String URL_SDK_LOGIN = SDK_BASE_HOST + "/?method=user.login";//帐号登录
 
 }

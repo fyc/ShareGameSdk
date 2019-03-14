@@ -6,16 +6,18 @@ import android.text.TextUtils;
 import com.jiyou.sdklibrary.config.ConstData;
 import com.jiyou.sdklibrary.config.HttpUrlConstants;
 import com.jiyou.sdklibrary.config.LogTAG;
-import com.jiyou.sdklibrary.mvp.model.MVPLoginBean;
-import com.jiyou.sdklibrary.mvp.model.MVPLoginResultBean;
+import com.jiyou.sdklibrary.mvp.model.JYSdkLoginBean;
+import com.jiyou.sdklibrary.mvp.model.JYSdkLoginRequestData;
 import com.jiyou.sdklibrary.mvp.presenter.LoginPresenter;
 import com.jiyou.sdklibrary.mvp.view.MVPLoginView;
 import com.jiyou.sdklibrary.tools.GsonUtils;
 import com.jiyou.sdklibrary.tools.HttpRequestUtil;
 import com.jiyou.sdklibrary.tools.LoggerUtils;
+import com.jiyou.sdklibrary.tools.MD5Util;
+import com.jiyou.sdklibrary.tools.ParamHelper;
+
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.SortedMap;
 
 
 /**
@@ -37,38 +39,47 @@ public class LoginPresenterImp  implements LoginPresenter {
     }
 
     @Override
-    public void login(MVPLoginBean user, Context context) {
+    public void login(JYSdkLoginRequestData user, Context context) {
         userName = user.getUserName().toString().trim();
         passWord = user.getPassWord().toString().trim();
 
         if ((!TextUtils.isEmpty(userName)) && (!TextUtils.isEmpty(passWord))) {
-            loginMethod( HttpUrlConstants.getLoginUrl(),userName,passWord );
+            loginMethod(HttpUrlConstants.URL_SDK_LOGIN,userName,passWord );
         } else {
             mvpLoginView.showAppInfo("","帐号或密码输入为空");
         }
 
     }
-    //测试登录账号：xiaowu 123456
+    //测试登录账号：testN6mn1tnm a111111
     private void loginMethod(String url,String userName,String passWord){
-        Map<String,String> map = new HashMap<>();
-        map.put("username",userName);
-        map.put("password",passWord);
+//        Map<String,String> map = new HashMap<>();
+//        map.put("username",userName);
+//        map.put("password",passWord);
 
-        HttpRequestUtil.okPostFormRequest(url, map, new HttpRequestUtil.DataCallBack() {
+
+        SortedMap<String, String> Param = ParamHelper.mapParam();
+        String passwordMd5 = MD5Util.encode(passWord).toLowerCase();
+        Param.put("username", userName);
+        Param.put("password", passwordMd5);
+
+        String sign = ParamHelper.createSign("UTF-8", Param);
+        Param.put("sign", sign);
+
+        HttpRequestUtil.okPostFormRequest(url, Param, new HttpRequestUtil.DataCallBack() {
             @Override
             public void requestSuccess(String result) throws Exception {
                 LoggerUtils.i(LogTAG.login,"responseBody:"+result);
-                MVPLoginResultBean mvpLoginResultBean = GsonUtils.GsonToBean(result, MVPLoginResultBean.class);
+                JYSdkLoginBean loginBean = GsonUtils.GsonToBean(result, JYSdkLoginBean.class);
 
-                int dataCode =  mvpLoginResultBean.getErrorCode();
-                String msg = mvpLoginResultBean.getErrorMsg();
+                int state =  loginBean.getState();
+//                String msg = mvpLoginResultBean.getErrorMsg();
 
-                if (dataCode == 0){
+                if (state == 1){
                     mvpLoginView.loginSuccess(ConstData.LOGIN_SUCCESS,result);
-                    LoggerUtils.i(LogTAG.login,"responseBody: login Success");
+//                    LoggerUtils.i(LogTAG.login,"responseBody: login Success");
 
                 }else {
-                    mvpLoginView.loginFailed(ConstData.LOGIN_FAILURE,msg);
+                    mvpLoginView.loginFailed(ConstData.LOGIN_FAILURE,loginBean.getMessage());
                     LoggerUtils.i(LogTAG.login,"responseBody: login Failure");
                 }
             }
@@ -89,6 +100,4 @@ public class LoginPresenterImp  implements LoginPresenter {
     public void detachView() {
         this.mvpLoginView = null;
     }
-
-
 }

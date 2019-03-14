@@ -3,7 +3,7 @@ package com.jiyou.sdklibrary.mvp.presenter;
 import android.content.Context;
 
 import com.jiyou.sdklibrary.base.BasePresenter;
-import com.jiyou.sdklibrary.mvp.model.MVPLoginBean;
+import com.jiyou.sdklibrary.mvp.model.JYSdkLoginRequestData;
 import com.jiyou.sdklibrary.mvp.view.MVPLoginView;
 
 /**
@@ -12,5 +12,5 @@ import com.jiyou.sdklibrary.mvp.view.MVPLoginView;
  */
 
 public interface LoginPresenter extends BasePresenter<MVPLoginView> {
-    void login(MVPLoginBean user , Context context) ;
+    void login(JYSdkLoginRequestData user , Context context) ;
 }

@@ -17,8 +17,8 @@ public class PlatformConfig extends DataTemplate {
     }
 
     public static void init() {
-        PlatformConfig.getInstance().setData("AK_PARTNERID","1");
-        PlatformConfig.getInstance().setData("AK_URL","https://sdk.7yol.cn/");
+        PlatformConfig.getInstance().setData("JY_PARTNERID","1");
+        PlatformConfig.getInstance().setData("JY_URL","https://sdk.7yol.cn/");
         PlatformConfig.getInstance().setData("LOGINJAR","cc.dkmproxy.simpleAct.plugin.simpleUserPlugin");
         PlatformConfig.getInstance().setData("PAYJAR","cc.dkmproxy.simpleAct.plugin.simplePayPlugin");
         PlatformConfig.getInstance().setData("orientation","1");
