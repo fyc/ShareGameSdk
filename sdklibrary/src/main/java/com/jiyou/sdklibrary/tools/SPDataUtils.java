@@ -15,6 +15,9 @@ public class SPDataUtils {
 
     private static SPDataUtils sp;
 
+    //安装后首次打开：1-是/0-否
+    public  static String IS_SDK_FIRST_INSTALL = "isSdkFirstInstall";
+
     private SPDataUtils() {
     }
 

@@ -37,5 +37,8 @@ public final class HttpUrlConstants {
         return "http://www.wanandroid.com/user/register";
     }
 
+    public static String SDK_BASE_HOST1 = "https://sdk.7yol.cn";
+    public static String SDK_BASE_HOST = SDK_BASE_HOST1;
+    public static String URL_SDK_INIT = SDK_BASE_HOST + "/?method=user.init"; //初始化接口
 
 }

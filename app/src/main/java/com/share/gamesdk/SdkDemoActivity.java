@@ -28,7 +28,7 @@ public class SdkDemoActivity extends AppCompatActivity implements View.OnClickLi
         //配置信息初始化:
         configInit();
         //游戏初始化:
-        init();
+//        init();
 
     }
 

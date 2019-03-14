@@ -5,12 +5,21 @@ import android.content.Intent;
 
 import com.jiyou.sdklibrary.callback.SdkCallbackListener;
 import com.jiyou.sdklibrary.config.ConstData;
+import com.jiyou.sdklibrary.config.HttpUrlConstants;
 import com.jiyou.sdklibrary.config.SDKStatusCode;
+import com.jiyou.sdklibrary.mvp.model.JYSdkInitBean;
 import com.jiyou.sdklibrary.mvp.model.MVPPayBean;
 import com.jiyou.sdklibrary.mvp.model.MVPPlayerBean;
+import com.jiyou.sdklibrary.tools.GsonUtils;
+import com.jiyou.sdklibrary.tools.HttpRequestUtil;
 import com.jiyou.sdklibrary.tools.LoggerUtils;
+import com.jiyou.sdklibrary.tools.ParamHelper;
+import com.jiyou.sdklibrary.tools.SPDataUtils;
 import com.jiyou.sdklibrary.ui.SdkLoginActivity;
 import com.jiyou.sdklibrary.ui.SdkPayActivity;
+
+import java.io.IOException;
+import java.util.SortedMap;
 
 /**
  * Created by tzw on 2018/6/5.
@@ -39,8 +48,44 @@ public class GameSdkLogic {
     //这里没有商业接口,固定是初始化成功,实际开发需要根据后台去判断成功/失败
     //只有当初始化的时候才可以进行后续操作
     public void sdkInit(Context context,final Object o, final SdkCallbackListener<String> callback){
-        callback.callback(SDKStatusCode.SUCCESS, "初始化成功");
-        checkInit = true;
+//        callback.callback(SDKStatusCode.SUCCESS, "初始化成功");
+        SortedMap<String, String> Param = ParamHelper.mapParam();
+//        Param.put("vCode", DeviceUtil.getVersionCode());
+//        Param.put("vName", DeviceUtil.getVersionName());
+        String iFirstInstall = SPDataUtils.getInstance().getString(SPDataUtils.IS_SDK_FIRST_INSTALL,"1");
+        Param.put("install", iFirstInstall);
+        String sign = ParamHelper.createSign("UTF-8", Param);
+        Param.put("sign", sign);
+
+        HttpRequestUtil.okPostFormRequest(HttpUrlConstants.URL_SDK_INIT, Param, new HttpRequestUtil.DataCallBack() {
+            @Override
+            public void requestSuccess(String result) throws Exception {
+//                LoggerUtils.i(LogTAG.login,"responseBody:"+result);
+                //初始化回调后设置为非首次安装
+                SPDataUtils.getInstance().savaString(SPDataUtils.IS_SDK_FIRST_INSTALL,"0");
+                checkInit = true;
+                JYSdkInitBean initBean = GsonUtils.GsonToBean(result, JYSdkInitBean.class);
+
+                int state =  initBean.getState();
+
+                if (state == 1){
+                    callback.callback(SDKStatusCode.SUCCESS, "初始化成功");
+
+                }else {
+                    callback.callback(SDKStatusCode.FAILURE, initBean.getMessage());
+                }
+            }
+
+            @Override
+            public void requestFailure(String request, IOException e) {
+                callback.callback(SDKStatusCode.FAILURE, e.toString());
+            }
+
+            @Override
+            public void requestNoConnect(String msg, String data) {
+                callback.callback(SDKStatusCode.FAILURE, data);
+            }
+        });
     }
 
     //登录:
